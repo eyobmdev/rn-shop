@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { useDeviceOrientation } from '@react-native-community/hooks';
 
 export default function App() {
-  const pos = useDeviceOrientation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -11,7 +9,7 @@ export default function App() {
       <View
         style={{
           width: '100%',
-          height: pos == "landscape" ? '100%' : '30%',
+          height: '30%',
           backgroundColor: 'dodgerblue',
         }}
       />
