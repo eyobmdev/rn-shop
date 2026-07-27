@@ -1,20 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
 export default function App() {
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <View
-        style={{
-          width: '100%',
-          height: '30%',
-          backgroundColor: 'dodgerblue',
-        }}
-      />
-    </SafeAreaView>
-  );
+  return <WelcomeScreen />
+
 }
 
 const styles = StyleSheet.create({
