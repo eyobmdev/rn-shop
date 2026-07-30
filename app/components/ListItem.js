@@ -1,26 +1,29 @@
 import React from "react";
 import { View, StyleSheet, Image, Pressable } from "react-native";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import AppText from "./AppText";
 import colors from "../configs/colors";
 
 function ListItem({ image, title, subtitle, onPress }) {
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.container,
-        {
-          backgroundColor: pressed ? "#ddd" : "#fff",
-        },
-      ]}
-    >
-      <Image style={styles.image} source={image} />
+    <Swipeable>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [
+          styles.container,
+          {
+            backgroundColor: pressed ? "#ddd" : "#fff",
+          },
+        ]}
+      >
+        <Image style={styles.image} source={image} />
 
-      <View style={styles.detailContainer}>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subtitle}>{subtitle}</AppText>
-      </View>
-    </Pressable>
+        <View style={styles.detailContainer}>
+          <AppText style={styles.title}>{title}</AppText>
+          <AppText style={styles.subtitle}>{subtitle}</AppText>
+        </View>
+      </Pressable>
+    </Swipeable>
   );
 }
 const styles = StyleSheet.create({
