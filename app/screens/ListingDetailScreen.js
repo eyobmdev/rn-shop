@@ -16,6 +16,7 @@ function ListingDetailScreen(props) {
             image={require("../assets/mosh.jpg")}
             title="Mosh Hamedani"
             subtitle="5 Listings"
+            onPress={() => console.log("hoooo")}
           />
         </View>
       </View>
