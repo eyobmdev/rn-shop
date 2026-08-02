@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Image, Pressable } from "react-native";
-import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import AppText from "./AppText";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import colors from "../configs/colors";
 
-function ListItem({ image, title, subtitle, onPress }) {
+function ListItem({ image, title, subtitle, onPress, renderRightActions }) {
   return (
-    <Swipeable>
+    <Swipeable renderRightActions={renderRightActions}>
       <Pressable
         onPress={onPress}
         style={({ pressed }) => [
