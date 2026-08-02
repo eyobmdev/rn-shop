@@ -7,7 +7,8 @@
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.DoneWithIt"
     },
     "android": {
       "adaptiveIcon": {
