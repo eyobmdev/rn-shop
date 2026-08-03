@@ -21,10 +21,13 @@ const initialMessage = [
 ];
 
 function MessageScreen() {
-  const [messages, setMessage] = useState(initialMessage);
+  const [messages, setMessages] = useState(initialMessage);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (message) => {
-    setMessage(messages.filter((m) => m.id !== message.id));
+    setMessages((prevMessages) =>
+      prevMessages.filter((m) => m.id !== message.id),
+    );
   };
 
   return (
@@ -44,6 +47,22 @@ function MessageScreen() {
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setRefreshing(true);
+
+          setTimeout(() => {
+            setMessages([
+              {
+                id: 3,
+                image: require("../assets/mosh.jpg"),
+                title: "New item",
+                description: "Refreshed data",
+              },
+            ]);
+            setRefreshing(false);
+          });
+        }}
       />
     </Screen>
   );
