@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import ListItem from "../components/ListItem";
-
 import Screen from "../components/Screen";
 import ListItemSeparator from "../components/ListItemSeparator";
+import ListItemDeleteAction from "../components/ListItemDeleteAction";
 
-const message = [
+const initialMessage = [
   {
     id: 1,
     image: require("../assets/mosh.jpg"),
@@ -20,11 +20,17 @@ const message = [
   },
 ];
 
-function MessageScreen(props) {
+function MessageScreen() {
+  const [messages, setMessage] = useState(initialMessage);
+
+  const handleDelete = (message) => {
+    setMessage(messages.filter((m) => m.id !== message.id));
+  };
+
   return (
     <Screen>
       <FlatList
-        data={message}
+        data={messages}
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
           <ListItem
@@ -32,6 +38,9 @@ function MessageScreen(props) {
             title={item.title}
             subtitle={item.description}
             onPress={() => console.log("hello")}
+            renderRightActions={() => (
+              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+            )}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
@@ -39,6 +48,7 @@ function MessageScreen(props) {
     </Screen>
   );
 }
+
 const styles = StyleSheet.create({});
 
 export default MessageScreen;
