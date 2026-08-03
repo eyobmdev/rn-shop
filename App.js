@@ -11,13 +11,17 @@ import ListingDetailScreen from "./app/screens/ListingDetailScreen";
 import MessageScreen from "./app/screens/MessageScreen";
 import Icon from "./app/components/Icon";
 import Screen from "./app/components/Screen";
+import ListItem from "./app/components/ListItem";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Screen>
-        <Icon name="email" size={35} backgroundColor="red" iconColor="white" />
-      </Screen>
-    </SafeAreaView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <Screen>
+          <ListItem title="title" ImageComponent={<Icon name="email" />} />
+        </Screen>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

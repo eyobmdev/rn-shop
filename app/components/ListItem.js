@@ -4,7 +4,14 @@ import AppText from "./AppText";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import colors from "../configs/colors";
 
-function ListItem({ image, title, subtitle, onPress, renderRightActions }) {
+function ListItem({
+  image,
+  ImageComponent,
+  title,
+  subtitle,
+  onPress,
+  renderRightActions,
+}) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <Pressable
@@ -16,11 +23,12 @@ function ListItem({ image, title, subtitle, onPress, renderRightActions }) {
           },
         ]}
       >
-        <Image style={styles.image} source={image} />
+        {ImageComponent}
+        {image && <Image style={styles.image} source={image} />}
 
         <View style={styles.detailContainer}>
           <AppText style={styles.title}>{title}</AppText>
-          <AppText style={styles.subtitle}>{subtitle}</AppText>
+          {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
         </View>
       </Pressable>
     </Swipeable>
@@ -44,6 +52,7 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     marginLeft: 10,
+    justifyContent: "center",
   },
   press: {},
 });
