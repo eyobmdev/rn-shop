@@ -6,7 +6,7 @@ import colors from "../configs/colors";
 
 function ListItem({
   image,
-  ImageComponent,
+  IconComponent,
   title,
   subtitle,
   onPress,
@@ -23,7 +23,7 @@ function ListItem({
           },
         ]}
       >
-        {ImageComponent}
+        {IconComponent}
         {image && <Image style={styles.image} source={image} />}
 
         <View style={styles.detailContainer}>
