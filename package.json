@@ -13,7 +13,9 @@
     "db:push": "drizzle-kit push",
     "start": "npx expo start",
     "lint": "npx expo lint",
-    "lint:fix": "npx expo lint --fix"
+    "lint:fix": "npx expo lint --fix",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
@@ -26,6 +28,7 @@
     "drizzle-orm": "^0.39.3",
     "drizzle-zod": "^0.7.0",
     "expo": "~54.0.27",
+    "expo-asset": "~12.0.13",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.11",
     "expo-crypto": "^15.0.8",
