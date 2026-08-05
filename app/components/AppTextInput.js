@@ -3,6 +3,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../configs/colors";
 import React from "react";
 
+import defaultStyle from "../configs/styles";
+
 const AppTextInput = ({ icon, ...otherProps }) => {
   return (
     <View style={styles.container}>
@@ -14,7 +16,7 @@ const AppTextInput = ({ icon, ...otherProps }) => {
           style={styles.icon}
         />
       )}
-      <TextInput style={styles.textInput} {...otherProps} />
+      <TextInput style={defaultStyle.text} {...otherProps} />
     </View>
   );
 };
@@ -29,14 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    // marginRight: 10,
-  },
-  textInput: {
-    color: colors.dark,
-    fontSize: 18,
-    flex: 1,
-    marginLeft: 10,
-    fontFamily: Platform.OS === "android" ? "monospace" : "Avenir",
+    marginRight: 10,
   },
 });
 
