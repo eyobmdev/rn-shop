@@ -13,7 +13,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./app/assets/android-icon-foreground.png",
+        "foregroundImage": "./app/assets/logo-red.png",
         "backgroundImage": "./app/assets/android-icon-background.png",
         "monochromeImage": "./app/assets/android-icon-monochrome.png"
       },
