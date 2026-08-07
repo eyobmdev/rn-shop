@@ -9,6 +9,7 @@ import AppButton from "../components/AppButton";
 import ErrorMessage from "../components/ErrorMessage";
 import AppFormField from "../components/AppFormField";
 import AppSubmitButton from "../components/AppSubmitButton";
+import AppForm from "../components/AppForm";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -22,39 +23,35 @@ const LoginScreen = () => {
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
 
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(value) => console.log(value)}
         validationSchema={validationSchema}
       >
-        {() => (
-          <>
-            <View style={styles.form}>
-              <AppFormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="email"
-                name="email"
-                keyboardType="email-address"
-                placeholder="Email"
-                textContentType="emailAddress"
-              />
-              <AppFormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="lock"
-                placeholder="Password"
-                name="password"
-                secureTextEntry={!showPassword}
-                textContentType="password"
-                rightIcon={showPassword ? "eye-off" : "eye"}
-                onRightIconPress={() => setShowPassword((prev) => !prev)}
-              />
-              <AppSubmitButton title="Login" />
-            </View>
-          </>
-        )}
-      </Formik>
+        <View style={styles.form}>
+          <AppFormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="email"
+            name="email"
+            keyboardType="email-address"
+            placeholder="Email"
+            textContentType="emailAddress"
+          />
+          <AppFormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="lock"
+            placeholder="Password"
+            name="password"
+            secureTextEntry={!showPassword}
+            textContentType="password"
+            rightIcon={showPassword ? "eye-off" : "eye"}
+            onRightIconPress={() => setShowPassword((prev) => !prev)}
+          />
+          <AppSubmitButton title="Login" />
+        </View>
+      </AppForm>
     </Screen>
   );
 };
