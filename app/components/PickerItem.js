@@ -51,10 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: defaultStyle.colors.dark,
   },
-  selectedText: {
-    fontWeight: "600",
-    color: defaultStyle.colors.primary,
-  },
 });
 
 export default PickerItem;
