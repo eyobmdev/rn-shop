@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppTextInput from "./app/components/AppTextInput";
 import Screen from "./app/components/Screen";
 import AppPicker from "./app/components/AppPicker";
+import { useState } from "react";
 
 export default function App() {
   const categories = [
@@ -14,9 +15,16 @@ export default function App() {
     { label: "Cameras", value: 3 },
     { label: "Food", value: 4 },
   ];
+  const [category, setCategory] = useState();
   return (
     <Screen>
-      <AppPicker selectedItem={categories} placeholder="Category" icon="apps" />
+      <AppPicker
+        selectedItem={category}
+        onSelectItem={(item) => setCategory(item)}
+        items={categories}
+        placeholder="Category"
+        icon="apps"
+      />
       <AppTextInput placeholder="Email" icon="email" />
     </Screen>
   );
