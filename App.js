@@ -5,15 +5,19 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppTextInput from "./app/components/AppTextInput";
 import Screen from "./app/components/Screen";
+import AppPicker from "./app/components/AppPicker";
 
 export default function App() {
+  const categories = [
+    { label: "Furniture", value: 1 },
+    { label: "Clothing", value: 2 },
+    { label: "Cameras", value: 3 },
+    { label: "Food", value: 4 },
+  ];
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <Screen>
-          <AppTextInput placeholder="Username" icon="email" />
-        </Screen>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <Screen>
+      <AppPicker selectedItem={categories} placeholder="Category" icon="apps" />
+      <AppTextInput placeholder="Email" icon="email" />
+    </Screen>
   );
 }
