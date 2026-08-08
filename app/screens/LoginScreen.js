@@ -1,15 +1,9 @@
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import React, { useState } from "react";
-import { Formik } from "formik";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import AppTextInput from "../components/AppTextInput";
-import AppButton from "../components/AppButton";
-import ErrorMessage from "../components/ErrorMessage";
-import AppFormField from "../components/AppFormField";
-import AppSubmitButton from "../components/AppSubmitButton";
-import AppForm from "../components/AppForm";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -49,7 +43,7 @@ const LoginScreen = () => {
             rightIcon={showPassword ? "eye-off" : "eye"}
             onRightIconPress={() => setShowPassword((prev) => !prev)}
           />
-          <AppSubmitButton title="Login" />
+          <SubmitButton title="Login" />
         </View>
       </AppForm>
     </Screen>
