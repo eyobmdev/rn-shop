@@ -14,7 +14,7 @@ const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <Screen style={styles.container}>
+    <Screen>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
 
       <AppForm
@@ -22,47 +22,39 @@ const LoginScreen = () => {
         onSubmit={(value) => console.log(value)}
         validationSchema={validationSchema}
       >
-        <View style={styles.form}>
-          <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            icon="email"
-            name="email"
-            keyboardType="email-address"
-            placeholder="Email"
-            textContentType="emailAddress"
-          />
-          <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            icon="lock"
-            placeholder="Password"
-            name="password"
-            secureTextEntry={!showPassword}
-            textContentType="password"
-            rightIcon={showPassword ? "eye-off" : "eye"}
-            onRightIconPress={() => setShowPassword((prev) => !prev)}
-          />
-          <SubmitButton title="Login" />
-        </View>
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          name="email"
+          keyboardType="email-address"
+          placeholder="Email"
+          textContentType="emailAddress"
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          placeholder="Password"
+          name="password"
+          secureTextEntry={!showPassword}
+          textContentType="password"
+          rightIcon={showPassword ? "eye-off" : "eye"}
+          onRightIconPress={() => setShowPassword((prev) => !prev)}
+        />
+        <SubmitButton title="Login" />
       </AppForm>
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
   logo: {
     width: 100,
     height: 100,
     alignSelf: "center",
     marginTop: 60,
     marginBottom: 40,
-  },
-  form: {
-    marginTop: 10,
   },
 });
 
