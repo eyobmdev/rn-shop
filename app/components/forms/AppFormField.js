@@ -9,7 +9,6 @@ const AppFormField = ({ name, ...otherProps }) => {
   return (
     <>
       <AppTextInput
-        icon={name}
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
         {...otherProps}
