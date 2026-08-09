@@ -1,7 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Image, Pressable } from "react-native";
-import AppText from "../AppText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+
+import AppText from "../AppText";
 import colors from "../../configs/colors";
 
 function ListItem({
@@ -30,6 +32,11 @@ function ListItem({
           <AppText style={styles.title}>{title}</AppText>
           {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
         </View>
+        <MaterialCommunityIcons
+          color={colors.medium}
+          name="chevron-right"
+          size={25}
+        />
       </Pressable>
     </Swipeable>
   );
@@ -38,6 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 10,
+    alignItems: "center",
   },
   image: {
     width: 70,
@@ -53,6 +61,7 @@ const styles = StyleSheet.create({
   detailContainer: {
     marginLeft: 10,
     justifyContent: "center",
+    flex: 1,
   },
   press: {},
 });
