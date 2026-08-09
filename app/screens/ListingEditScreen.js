@@ -3,7 +3,13 @@ import React from "react";
 import * as Yub from "yup";
 import Screen from "../components/Screen";
 
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import {
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  AppFormPicker,
+} from "../components/forms";
+
 
 const validationSchema = Yub.object().shape({
   title: Yub.string().required().min(3).label("Title"),
@@ -38,9 +44,9 @@ const ListingEditScreen = () => {
           name="price"
           placeholder="Price"
         />
-        <AppFormField
-          name="category"
+        <AppFormPicker
           items={categories}
+          name="category"
           placeholder="Category"
         />
         <AppFormField
