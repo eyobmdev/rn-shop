@@ -9,6 +9,7 @@ import {
   SubmitButton,
   AppFormPicker,
 } from "../components/forms";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 
 const validationSchema = Yub.object().shape({
   title: Yub.string().required().min(3).label("Title"),
@@ -48,6 +49,7 @@ const ListingEditScreen = () => {
           items={categories}
           name="category"
           placeholder="Category"
+          PickerItemComponent={CategoryPickerItem}
           width="50%"
         />
         <AppFormField

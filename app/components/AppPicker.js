@@ -18,6 +18,7 @@ const AppPicker = ({
   items,
   placeholder,
   selectedItem,
+  PickerItemComponent = PickerItem,
   onSelectItem,
   width = "100%",
 }) => {
@@ -39,9 +40,6 @@ const AppPicker = ({
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
-          {/* <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText> */}
 
           <MaterialCommunityIcons
             name="chevron-down"
@@ -57,7 +55,7 @@ const AppPicker = ({
             data={items}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
                 onPress={() => {
                   setModalVisible(false);
                   onSelectItem(item);
