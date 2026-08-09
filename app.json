@@ -5,7 +5,7 @@
     "scheme": "rn",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/logo-red.png",
+    "icon": "./app/assets/e-logo2.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
@@ -14,7 +14,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./app/assets/logo-red.png",
+        "foregroundImage": "./app/assets/e-logo.png",
         "backgroundImage": "./app/assets/android-icon-background.png",
         "monochromeImage": "./app/assets/android-icon-monochrome.png"
       },
