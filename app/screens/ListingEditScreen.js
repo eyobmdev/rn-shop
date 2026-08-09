@@ -10,7 +10,6 @@ import {
   AppFormPicker,
 } from "../components/forms";
 
-
 const validationSchema = Yub.object().shape({
   title: Yub.string().required().min(3).label("Title"),
   price: Yub.number().required().min(1).max(10000).label("Price"),
@@ -43,6 +42,7 @@ const ListingEditScreen = () => {
           maxLength={8}
           name="price"
           placeholder="Price"
+          width={120}
         />
         <AppFormPicker
           items={categories}
