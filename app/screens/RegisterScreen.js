@@ -23,7 +23,7 @@ const RegisterScreen = () => {
 
   return (
     <Screen>
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+      <Image style={styles.logo} source={require("../assets/e-logo.png")} />
 
       <AppForm
         initialValues={{
