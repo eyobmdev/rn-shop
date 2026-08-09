@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/lists/ListItem";
 import Icon from "../components/Icon";
 import Screen from "../components/Screen";
 import colors from "../configs/colors";
-import ListItemSeparator from "../components/ListItemSeparator";
+import ListItemSeparator from "../components/lists/ListItemSeparator";
 
 export default function AccountScreen() {
   const menuItem = [
