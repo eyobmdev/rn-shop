@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppText from "./AppText";
 import defaultStyle from "../configs/styles";
 
-const PickerItem = ({ label, onPress, selected }) => {
+const PickerItem = ({ item, onPress, selected }) => {
   return (
     <Pressable
       onPress={onPress}
@@ -15,7 +15,7 @@ const PickerItem = ({ label, onPress, selected }) => {
       ]}
     >
       <AppText style={[styles.text, selected && styles.selectedText]}>
-        {label}
+        {item.label}
       </AppText>
 
       {selected && (
