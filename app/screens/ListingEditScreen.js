@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yub from "yup";
+import * as Location from "expo-location";
+
 import Screen from "../components/Screen";
 
 import {
@@ -78,6 +79,38 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
+const [location, setLocation] = useState(null);
+
+const getLocation = async () => {
+  try {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+
+    if (status !== "granted") {
+      console.log("Location permission denied");
+      return;
+    }
+
+    const position = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Balanced,
+    });
+
+
+    if (!position) {
+      console.log("Could not get location");
+      return;
+    }
+
+    const { latitude, longitude } = position.coords;
+    setLocation({ latitude, longitude });
+
+  } catch (error) {
+    console.log("Error getting location:", error);
+  }
+};
+
+useEffect(() => {
+  getLocation();
+}, []);
   return (
     <Screen>
       <AppForm
@@ -88,7 +121,7 @@ const ListingEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={(value) => console.log(value)}
+        onSubmit={(value) => console.log(console.log(location))}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
