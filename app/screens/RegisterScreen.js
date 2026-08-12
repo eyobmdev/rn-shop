@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import AppForm from "../components/forms/AppForm";
-import AppFormField from "../components/forms/AppFormField";
+import AppForm from "../components/forms/Form";
+import AppFormField from "../components/forms/FormField";
 import SubmitButton from "../components/forms/SubmitButton";
 
 const validationSchema = Yup.object().shape({
