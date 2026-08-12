@@ -10,12 +10,14 @@ import {
   AppFormPicker,
 } from "../components/forms";
 import CategoryPickerItem from "../components/CategoryPickerItem";
+import FormImagePicker from "../components/forms/FormImagePicker";
 
 const validationSchema = Yub.object().shape({
   title: Yub.string().required().min(3).label("Title"),
   price: Yub.number().required().min(1).max(10000).label("Price"),
   description: Yub.string().label("Description"),
   category: Yub.object().required().nullable().label("Category"),
+  images: Yub.array().min(1, "Please select at least one image."),
 });
 
 const categories = [
@@ -84,10 +86,13 @@ const ListingEditScreen = () => {
           price: "",
           description: "",
           category: null,
+          images: [],
         }}
         onSubmit={(value) => console.log(value)}
         validationSchema={validationSchema}
       >
+        <FormImagePicker name="images" />
+
         <AppFormField name="title" maxLength={255} placeholder="Title" />
         <AppFormField
           keyboardType="numeric"
