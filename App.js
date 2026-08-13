@@ -59,8 +59,21 @@ const Accounts = () => (
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Feed" component={Tweets} />
+    <Tab.Navigator
+      tabBarOptions={{
+        activeBackgroundColor: "tomato",
+        activeTintColor: "white",
+        inactiveBackgroundColor: "#eee",
+        inactiveTintColor: "black",
+      }}
+    >
+      <Tab.Screen
+        name="Feed"
+        component={Tweets}
+        options={{
+          tabBarIcon: () => <MaterialCommunityIcons name="home" size={25} />,
+        }}
+      />
       <Tab.Screen name="Accounts" component={Accounts} />
     </Tab.Navigator>
   );
