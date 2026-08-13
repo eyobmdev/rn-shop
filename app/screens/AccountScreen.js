@@ -6,23 +6,25 @@ import Screen from "../components/Screen";
 import colors from "../configs/colors";
 import ListItemSeparator from "../components/lists/ListItemSeparator";
 
-export default function AccountScreen() {
-  const menuItem = [
-    {
-      title: "My listings",
-      icon: {
-        name: "format-list-bulleted",
-        backgroundColor: colors.primary,
-      },
+const menuItem = [
+  {
+    title: "My listings",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.primary,
     },
-    {
-      title: "My messages",
-      icon: {
-        name: "email",
-        backgroundColor: colors.secondary,
-      },
+  },
+  {
+    title: "My messages",
+    icon: {
+      name: "email",
+      backgroundColor: colors.secondary,
     },
-  ];
+    targetScreen: "Messages",
+  },
+];
+
+export default function AccountScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -46,6 +48,7 @@ export default function AccountScreen() {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />
