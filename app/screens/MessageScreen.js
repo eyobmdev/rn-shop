@@ -9,9 +9,9 @@ import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 const initialMessage = [
   {
     id: 1,
-    image: require("../assets/mosh.jpg"),
-    title: "hello",
-    description: "world",
+    image: require("../assets/eyob.jpeg"),
+    title: "Eyob",
+    description: "Hey there",
   },
   {
     id: 2,
