@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../configs/colors";
 
-const ListingScreen = () => {
+const ListingScreen = ({ navigation }) => {
   const listings = [
     {
       id: 1,
@@ -15,7 +15,7 @@ const ListingScreen = () => {
     {
       id: 2,
       title: "Couch",
-      subtitle: 2000,
+      price: 3200,
       image: require("../assets/couch.jpg"),
     },
   ];
@@ -29,6 +29,7 @@ const ListingScreen = () => {
             title={item.title}
             subtitle={"$" + item.price}
             image={item.image}
+            onPress={() => navigation.navigate("ListingDetails", item)}
           />
         )}
       />
