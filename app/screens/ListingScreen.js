@@ -17,7 +17,7 @@ const ListingScreen = ({ navigation }) => {
 
   const loadListings = async () => {
     const response = await listingsApi.getListings();
-    if (!response.ok) setError(true);
+    if (!response.ok) return setError(true);
     setError(false);
     setListings(response.data);
   };
