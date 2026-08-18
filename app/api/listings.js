@@ -12,15 +12,18 @@ const addListing = (listing) => {
 
   listing.images.forEach((image, index) => {
     data.append("images", {
-      name: "image" + index,
+      name: `image${index}.jpg`,
       type: "image/jpeg",
       uri: image,
     });
   });
   if (listing.location)
     data.append("location", JSON.stringify(listing.location));
-
-  return client.post(endpoint, data);
+  return client.post(endpoint, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 export default {
