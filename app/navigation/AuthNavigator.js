@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 const AuthNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name="welcome"
+      name="Welcome"
       component={WelcomeScreen}
       options={{ headerShown: false }}
     />
@@ -18,4 +18,5 @@ const AuthNavigator = () => (
     <Stack.Screen name="Register" component={RegisterScreen} />
   </Stack.Navigator>
 );
+
 export default AuthNavigator;
