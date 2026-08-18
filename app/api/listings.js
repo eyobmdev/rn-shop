@@ -25,4 +25,5 @@ const addListing = (listing) => {
 
 export default {
   getListings,
+  addListing,
 };
