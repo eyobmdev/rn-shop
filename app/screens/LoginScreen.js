@@ -1,60 +1,59 @@
-import { View, StyleSheet, Image } from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { StyleSheet, Image } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { Form, FormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-const LoginScreen = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
+function LoginScreen(props) {
   return (
-    <Screen>
-      <Image style={styles.logo} source={require("../assets/e-logo.png")} />
+    <Screen style={styles.container}>
+      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
 
-      <AppForm
+      <Form
         initialValues={{ email: "", password: "" }}
-        onSubmit={(value) => console.log(value)}
+        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
           icon="email"
-          name="email"
           keyboardType="email-address"
+          name="email"
           placeholder="Email"
           textContentType="emailAddress"
         />
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
           icon="lock"
-          placeholder="Password"
           name="password"
-          secureTextEntry={!showPassword}
+          placeholder="Password"
+          secureTextEntry
           textContentType="password"
-          rightIcon={showPassword ? "eye-off" : "eye"}
-          onRightIconPress={() => setShowPassword((prev) => !prev)}
         />
         <SubmitButton title="Login" />
-      </AppForm>
+      </Form>
     </Screen>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
   logo: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     alignSelf: "center",
-    marginTop: 60,
-    marginBottom: 40,
+    marginTop: 50,
+    marginBottom: 20,
   },
 });
 
