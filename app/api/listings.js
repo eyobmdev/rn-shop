@@ -16,15 +16,22 @@ export const addListing = (listing, onUploadProgress) => {
       name: "image" + index,
       type: "image/jpeg",
       uri: image,
-    })
+    }),
   );
 
   if (listing.location)
     data.append("location", JSON.stringify(listing.location));
 
   return client.post(endpoint, data, {
-    onUploadProgress: (progress) =>
-      onUploadProgress(progress.loaded / progress.total),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+    onUploadProgress: (progress) => {
+      if (progress.total) {
+        onUploadProgress(progress.loaded / progress.total);
+      }
+    },
   });
 };
 
