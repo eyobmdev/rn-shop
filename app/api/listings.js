@@ -1,48 +1,34 @@
 import client from "./client";
 
 const endpoint = "/listings";
+
 const getListings = () => client.get(endpoint);
 
-const addListing = (listing, onUploadProgress) => {
+export const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
-
   data.append("title", listing.title);
   data.append("price", listing.price);
   data.append("categoryId", listing.category.value);
-  data.append("description", listing.description || "");
+  data.append("description", listing.description);
 
-  listing.images.forEach((image, index) => {
+  listing.images.forEach((image, index) =>
     data.append("images", {
-      uri: image,
+      name: "image" + index,
       type: "image/jpeg",
-      name: `image${index}.jpg`,
-    });
-  });
+      uri: image,
+    })
+  );
 
-  if (listing.location) {
+  if (listing.location)
     data.append("location", JSON.stringify(listing.location));
-  }
 
   return client.post(endpoint, data, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    transformRequest: (data) => data,
-    onUploadProgress: (progressEvent) => {
-      console.log("Raw progressEvent:", progressEvent);
-
-      if (progressEvent.total) {
-        const progress = progressEvent.loaded / progressEvent.total;
-        console.log("Progress:", progress); 
-        onUploadProgress(progress);
-      } else {
-        console.log("No total size available");
-      }
-    },
+    onUploadProgress: (progress) =>
+      onUploadProgress(progress.loaded / progress.total),
   });
 };
 
 export default {
-  getListings,
   addListing,
+  getListings,
 };
