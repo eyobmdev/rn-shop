@@ -88,23 +88,34 @@ function ListingEditScreen() {
   const handleSubmit = async (listing, { resetForm }) => {
     setProgress(0);
     setUploadVisible(true);
-    const result = await listingsApi.addListing(
-      { ...listing, location },
-      (progress) => setProgress(progress)
-    );
 
-    if (!result.ok) {
+    try {
+      const result = await listingsApi.addListing(
+        { ...listing, location },
+        (progress) => setProgress(progress),
+      );
+
+      if (!result.ok) {
+        setUploadVisible(false);
+        return alert("Could not save the listing");
+      }
+
+      setProgress(1);
+      resetForm();
+    } catch (error) {
       setUploadVisible(false);
-      return alert("Could not save the listing");
+      console.log(error);
+      alert("An unexpected error occurred while uploading.");
     }
-
-    resetForm();
   };
 
   return (
     <Screen style={styles.container}>
       <UploadScreen
-        onDone={() => setUploadVisible(false)}
+        onDone={() => {
+          setUploadVisible(false);
+          setProgress(0);
+        }}
         progress={progress}
         visible={uploadVisible}
       />
@@ -154,4 +165,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
 export default ListingEditScreen;
