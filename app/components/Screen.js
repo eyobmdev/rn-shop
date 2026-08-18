@@ -1,24 +1,22 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import React from "react";
+import Constants from "expo-constants";
+import { StyleSheet, SafeAreaView, View } from "react-native";
 
 function Screen({ children, style }) {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <SafeAreaView style={[styles.screen, style]} edges={["top", "bottom"]}>
-          {children}
-        </SafeAreaView>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <SafeAreaView style={[styles.screen, style]}>
+      <View style={[styles.view, style]}>{children}</View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   screen: {
+    paddingTop: Constants.statusBarHeight,
     flex: 1,
-    margin: 20,
+  },
+  view: {
+    flex: 1,
   },
 });
 
