@@ -1,44 +1,45 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ListItem from "../components/lists/ListItem";
-import Icon from "../components/Icon";
-import Screen from "../components/Screen";
-import colors from "../configs/colors";
-import ListItemSeparator from "../components/lists/ListItemSeparator";
-import routes from "../navigation/routes";
+import { StyleSheet, View, FlatList } from "react-native";
 
-const menuItem = [
+import { ListItem, ListItemSeparator } from "../components/lists";
+import colors from "../config/colors";
+import Icon from "../components/Icon";
+import routes from "../navigation/routes";
+import Screen from "../components/Screen";
+
+const menuItems = [
   {
-    title: "My listings",
+    title: "My Listings",
     icon: {
       name: "format-list-bulleted",
       backgroundColor: colors.primary,
     },
   },
   {
-    title: "My messages",
+    title: "My Messages",
     icon: {
       name: "email",
       backgroundColor: colors.secondary,
     },
+    targetScreen: routes.MESSAGES,
   },
 ];
 
-export default function AccountScreen({ navigation }) {
+function AccountScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           title="Eyob Mulugeta"
-          subtitle="eyob.m.dev@gmail.com"
+          subTitle="eyobmulugeta.dev@gmail.com"
           image={require("../assets/eyob.jpeg")}
         />
       </View>
       <View style={styles.container}>
         <FlatList
-          data={menuItem}
-          ItemSeparatorComponent={ListItemSeparator}
+          data={menuItems}
           keyExtractor={(menuItem) => menuItem.title}
+          ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
@@ -48,21 +49,26 @@ export default function AccountScreen({ navigation }) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-              onPress={() => navigation.navigate(routes.MESSAGES)}
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />
       </View>
       <ListItem
-        title="Logout"
+        title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
   );
 }
+
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: colors.light,
+  },
   container: {
     marginVertical: 20,
   },
-  screen: { backgroundColor: colors.light },
 });
+
+export default AccountScreen;
