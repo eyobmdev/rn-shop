@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -7,8 +8,7 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-import React, { useEffect } from "react";
-import colors from "../configs/colors";
+import colors from "../config/colors";
 
 const ImageInput = ({ imageUri, onChange }) => {
   useEffect(() => {
@@ -53,6 +53,7 @@ const ImageInput = ({ imageUri, onChange }) => {
       <View style={styles.container}>
         {!imageUri && (
           <MaterialCommunityIcons
+            color={colors.medium}
             name="camera"
             size={40}
             color={colors.medium}
