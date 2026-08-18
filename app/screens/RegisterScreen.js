@@ -1,48 +1,31 @@
-import { View, Image, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import AppForm from "../components/forms/Form";
-import AppFormField from "../components/forms/FormField";
-import SubmitButton from "../components/forms/SubmitButton";
+import { Form, FormField, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
-  confirmPassword: Yup.string()
-    .required()
-    .oneOf([Yup.ref("password")], "Passwords must match")
-    .label("Confirm Password"),
 });
 
-const RegisterScreen = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+function RegisterScreen() {
   return (
-    <Screen>
-      <Image style={styles.logo} source={require("../assets/e-logo.png")} />
-
-      <AppForm
-        initialValues={{
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        validationSchema={validationSchema}
+    <Screen style={styles.container}>
+      <Form
+        initialValues={{ name: "", email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
       >
-        <AppFormField
+        <FormField
           autoCorrect={false}
           icon="account"
           name="name"
           placeholder="Name"
         />
-
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
           icon="email"
@@ -51,43 +34,25 @@ const RegisterScreen = () => {
           placeholder="Email"
           textContentType="emailAddress"
         />
-
-        <AppFormField
+        <FormField
           autoCapitalize="none"
           autoCorrect={false}
           icon="lock"
           name="password"
           placeholder="Password"
-          secureTextEntry={!showPassword}
+          secureTextEntry
           textContentType="password"
-          rightIcon={showPassword ? "eye-off" : "eye"}
-          onRightIconPress={() => setShowPassword((prev) => !prev)}
         />
-
-        <AppFormField
-          autoCapitalize="none"
-          autoCorrect={false}
-          icon="lock"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          secureTextEntry={!showConfirmPassword}
-          textContentType="password"
-          rightIcon={showConfirmPassword ? "eye-off" : "eye"}
-          onRightIconPress={() => setShowConfirmPassword((prev) => !prev)}
-        />
-
         <SubmitButton title="Register" />
-      </AppForm>
+      </Form>
     </Screen>
   );
-};
+}
+
 const styles = StyleSheet.create({
-  logo: {
-    width: 100,
-    height: 100,
-    alignSelf: "center",
-    marginTop: 60,
-    marginBottom: 40,
+  container: {
+    padding: 10,
   },
 });
+
 export default RegisterScreen;
