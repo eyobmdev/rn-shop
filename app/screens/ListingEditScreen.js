@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yub from "yup";
 
+import listingApi from "../api/listings";
 import Screen from "../components/Screen";
 
 import {
@@ -80,6 +81,13 @@ const categories = [
 
 const ListingEditScreen = () => {
   const location = useLocation();
+
+  const handleSubmit = async (listing) => {
+    const result = await listingApi.addListing({ ...listing, location });
+    console.log(result);
+    if (!result.ok) return alert("Could not save the listing");
+    alert("Success");
+  };
   return (
     <Screen>
       <AppForm
@@ -90,7 +98,7 @@ const ListingEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={(value) => console.log(console.log(location))}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
