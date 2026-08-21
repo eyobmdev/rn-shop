@@ -16,6 +16,12 @@ const store = async (key, value) => {
   }
 };
 
+const isExpired = (item) => {
+  const now = moment(Date.now());
+  const storedTime = moment(item.timestamp);
+  return now.diff(storedTime, "minutes ") > expiryInMinutes;
+};
+
 const get = async (key) => {
   try {
     const value = await AsyncStorage.getItem(prefix + key);
@@ -23,11 +29,7 @@ const get = async (key) => {
 
     if (!item) return null;
 
-    const now = moment(Date.now());
-    const storedTime = moment(item.timestamp);
-    const isExpired = now.diff(storedTime, "minutes ") > expiryInMinutes;
-
-    if (isExpired) {
+    if (isExpired(item)) {
       await AsyncStorage.removeItem(prefix + key);
       return null;
     }
