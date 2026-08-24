@@ -10,7 +10,7 @@ async function demo() {
   try {
     await AsyncStorage.setItem("userToken", "abc123");
     await AsyncStorage.setItem("jj", JSON.stringify({id:4}));
-
+ 
     const token = await AsyncStorage.getItem("userToken");
     console.log("Stored token:", token);
 
