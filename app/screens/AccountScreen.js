@@ -27,13 +27,14 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+  if (!user) return null;
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title={user.name}
-          subTitle={user.email}
+          title={user?.name}
+          subTitle={user?.email}
           image={require("../assets/eyob.jpeg")}
         />
       </View>
@@ -59,6 +60,9 @@ function AccountScreen({ navigation }) {
       <ListItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+        onPress={() => {
+          setUser(null);
+        }}
       />
     </Screen>
   );
