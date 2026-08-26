@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
 import OfflineNotice from "./app/components/OfflineNotice";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 export default function App() {
   return (
@@ -12,7 +13,7 @@ export default function App() {
       <OfflineNotice />
       <SafeAreaProvider>
         <NavigationContainer theme={navigationTheme}>
-          <AppNavigator />
+          <AuthNavigator />
         </NavigationContainer>
       </SafeAreaProvider>
     </>
