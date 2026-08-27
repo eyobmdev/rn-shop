@@ -6,7 +6,7 @@ import colors from "../config/colors";
 
 function NewListingButton({ onPress }) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.wrapper}>
       <View style={styles.container}>
         <MaterialCommunityIcons
           name="plus-circle"
@@ -19,16 +19,21 @@ function NewListingButton({ onPress }) {
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,                  
+    alignItems: "center",     
+    justifyContent: "center", 
+  },
   container: {
     alignItems: "center",
     backgroundColor: colors.primary,
     borderColor: colors.white,
     borderRadius: 40,
     borderWidth: 10,
-    bottom: 20,
     height: 80,
     justifyContent: "center",
     width: 80,
+    bottom: 20,              
   },
 });
 
