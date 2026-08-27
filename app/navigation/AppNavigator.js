@@ -11,7 +11,11 @@ import routes from "./routes";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator
+    screenOptions={{
+      headerShown: false, 
+    }}
+  >
     <Tab.Screen
       name="Feed"
       component={FeedNavigator}
