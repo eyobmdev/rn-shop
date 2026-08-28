@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { jwtDecode } from "jwt-decode";          
+import { jwtDecode } from "jwt-decode";
 
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
