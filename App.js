@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { jwtDecode } from "jwt-decode";
 import * as SplashScreen from "expo-splash-screen";
 
 import navigationTheme from "./app/navigation/navigationTheme";
@@ -17,31 +16,28 @@ export default function App() {
   const [user, setUser] = useState();
   const [isReady, setIsReady] = useState(false);
 
-  const restoreUser = async () => {
-    const token = await authStorage.getToken();
-    if (token) {
-      try {
-        setUser(jwtDecode(token));
-      } catch (error) {
-        await authStorage.removeToken();
-      }
-    }
-  };
-
   useEffect(() => {
     async function prepare() {
       try {
-        await restoreUser();
+        const storedUser = await authStorage.getUser();
+        if (storedUser) {
+          setUser(storedUser);
+        }
+      } catch (error) {
+        console.log("Error restoring user:", error);
+        await authStorage.removeToken();
       } finally {
         setIsReady(true);
-        await SplashScreen.hideAsync(); 
+        await SplashScreen.hideAsync();
       }
     }
 
     prepare();
   }, []);
 
-  if (!isReady) return null;
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
