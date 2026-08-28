@@ -6,7 +6,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/e-logo2.png",
-    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#E63C4B"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.DoneWithIt"
@@ -24,7 +28,19 @@
       "favicon": "./app/assets/logo-red.png"
     },
     "plugins": [
-      "expo-asset"
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./app/assets/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "cover",
+          "backgroundColor": "#E63C4B",
+          "dark": {
+            "backgroundColor": "#E63C4B"
+          }
+        }
+      ]
     ]
   }
 }
