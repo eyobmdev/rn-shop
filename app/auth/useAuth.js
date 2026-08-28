@@ -7,7 +7,7 @@ import AuthContext from "./context";
 const useAuth = () => {
   const { user, setUser } = useContext(AuthContext);
 
-  const login = (authToken) => {
+  const logIn = (authToken) => {
     const user = jwtDecode(authToken);
     setUser(user);
     authStorage.storeToken(authToken);
@@ -18,7 +18,7 @@ const useAuth = () => {
     authStorage.removeToken();
   };
 
-  return { user, login, logOut };
+  return { user, logIn, logOut };
 };
 
 export default useAuth;
