@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
-import { Form, FormField, SubmitButton } from "../components/forms";
+import {
+  ErrorMessage,
+  Form,
+  FormField,
+  SubmitButton,
+} from "../components/forms";
+import authApi from "../api/auth";
+import users from "../api/users";
+import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -12,13 +20,34 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen() {
+  const [error, setError] = useState();
+  const auth = useAuth();
+
+  const handleSubmit = async (userInfo) => {
+    const result = await users.register(userInfo);
+    if (!result.ok) {
+      if (result.data) setError(result.data.error);
+      else {
+        setError("An unexpected error occurred.");
+        console.log("Error");
+      }
+      return;
+    }
+    const { data: authToken } = await authApi.login(
+      userInfo.email,
+      userInfo.password,
+    );
+    auth.login(authToken);
+  };
   return (
     <Screen style={styles.container}>
       <Form
         initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+        <ErrorMessage error={error} visible={error} />
+
         <FormField
           autoCorrect={false}
           icon="account"
