@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   useNotifications();
+
   return (
     <Tab.Navigator
       screenOptions={{
