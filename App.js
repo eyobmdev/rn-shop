@@ -1,6 +1,3 @@
-import Bugsnag from '@bugsnag/expo';
-Bugsnag.start();
-
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -14,6 +11,9 @@ import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import { navigationRef } from "./app/navigation/rootNavigation";
 import * as Notifications from "expo-notifications";
+import logger from "./app/utility/logger";
+
+logger.start();
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -38,7 +38,7 @@ export default function App() {
           setUser(storedUser);
         }
       } catch (error) {
-        console.log("Error restoring user:", error);
+        logger.log(error);
         await authStorage.removeToken();
       } finally {
         setIsReady(true);
