@@ -14,6 +14,7 @@ import FormImagePicker from "../components/forms/FormImagePicker";
 import listingsApi from "../api/listings";
 import useLocation from "../hooks/useLocation";
 import UploadScreen from "./UploadScreen";
+import logger from "../utility/logger";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -104,7 +105,7 @@ function ListingEditScreen() {
       resetForm();
     } catch (error) {
       setUploadVisible(false);
-      console.log(error);
+      logger.log(error);
       alert("An unexpected error occurred while uploading.");
     }
   };

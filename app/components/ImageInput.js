@@ -9,6 +9,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import colors from "../config/colors";
+import logger from "../utility/logger";
 
 const ImageInput = ({ imageUri, onChange }) => {
   useEffect(() => {
@@ -45,7 +46,7 @@ const ImageInput = ({ imageUri, onChange }) => {
         onChange(result.assets[0].uri);
       }
     } catch (error) {
-      console.log("ImagePicker error:", error);
+      logger.log(error);
     }
   };
   return (
@@ -56,7 +57,6 @@ const ImageInput = ({ imageUri, onChange }) => {
             color={colors.medium}
             name="camera"
             size={40}
-            color={colors.medium}
           />
         )}
         {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}

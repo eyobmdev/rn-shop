@@ -9,7 +9,7 @@ export default function useLocation() {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== "granted") {
-        console.log("Location permission denied");
+        logger.log("Location permission denied");
         return;
       }
 
@@ -18,14 +18,14 @@ export default function useLocation() {
       });
 
       if (!position) {
-        console.log("Could not get location");
+        logger.log("Could not get location");
         return;
       }
 
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
     } catch (error) {
-      console.log("Error getting location:", error);
+      logger.log(error);
     }
   };
 
